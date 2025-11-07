@@ -1,4 +1,3 @@
-
 def pair_search(position, seq, ss):
     """
     :param position: the index of target position
@@ -26,29 +25,31 @@ def pair_search(position, seq, ss):
         temp_count -= 1
         temp_position -= 1
         direction = -1
-    while temp_count != 0:
-        if direction == 1:
-            if ss[temp_position] == '(':
-                temp_count += 1
-                temp_position += 1
-            elif ss[temp_position] == ')':
-                temp_count -= 1
-                temp_position += 1
-            else:
-                temp_position += 1
-        elif direction == -1:
-            if ss[temp_position] == '(':
-                temp_count += 1
-                temp_position -= 1
-            elif ss[temp_position] == ')':
-                temp_count -= 1
-                temp_position -= 1
-            else:
-                temp_position -= 1
+    try:
+        while temp_count != 0:
+            if direction == 1:
+                if ss[temp_position] == '(':
+                    temp_count += 1
+                    temp_position += 1
+                elif ss[temp_position] == ')':
+                    temp_count -= 1
+                    temp_position += 1
+                else:
+                    temp_position += 1
+            elif direction == -1:
+                if ss[temp_position] == '(':
+                    temp_count += 1
+                    temp_position -= 1
+                elif ss[temp_position] == ')':
+                    temp_count -= 1
+                    temp_position -= 1
+                else:
+                    temp_position -= 1
+    except IndexError:
+        return "no paired position"
+
     if direction == 1:
         temp_position -= 1
     elif direction == -1:
         temp_position += 1
     return seq[temp_position], ss[temp_position]
-
-print(pair_search(0,"1234GGAAAA5678","((((.()...))))"))
