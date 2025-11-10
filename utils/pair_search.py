@@ -1,4 +1,4 @@
-def pair_search(position, seq, ss):
+def pair_search(seq, ss, position):
     """
     :param position: the index of target position
     :param seq: the sequence of RNA containing A, U, G, C
@@ -52,4 +52,6 @@ def pair_search(position, seq, ss):
         temp_position -= 1
     elif direction == -1:
         temp_position += 1
-    return seq[temp_position], ss[temp_position]
+    return temp_position, seq[temp_position], ss[temp_position]
+
+print(pair_search("ATGCGCAT", "(((())))", 0))
